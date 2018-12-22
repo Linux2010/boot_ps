@@ -17,14 +17,15 @@ public class FreeMarkerConfig {
     private freemarker.template.Configuration configuration;
 
     @Value("${server.context-path}")
-    private String contextPath;
+    private String basePath;
 
     @PostConstruct
     public void init() throws TemplateModelException {
-        if ("/".equals(contextPath)) {
-            contextPath = "";
+        if ("/".equals(basePath)) {
+            basePath = "";
         }
-        configuration.setSharedVariable("ctx", contextPath);
+        configuration.setSharedVariable("basePath", basePath);
+        configuration.setSharedVariable("ctx", basePath);
     }
 
 }

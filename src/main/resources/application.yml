@@ -1,5 +1,19 @@
 server:
   port: 8001
+  context-path: /
 spring:
   application:
     name: boot-ps
+
+  datasource:
+      url: jdbc:mysql://localhost:3306/gameshare?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=true&allowMultiQueries=true
+      username: root
+      password: root
+
+pagehelper:
+  params: pageNum=pageNumKey;pageSize=pageSizeKey;
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml
+  #type-aliases-package: classpath:cn.com.myproject.user.entity
+  config-location: classpath:mybatis-config.xml
