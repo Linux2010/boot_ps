@@ -36,8 +36,8 @@ public class GameResourceServiceImpl implements GameResourceService {
     }
 
     @Override
-    public PageInfo<GameResourceVO> getPage(int pageNum, int pageSize,String keyword) {
-        List<GameResource> page = mapper.getPage(pageNum, pageSize ,keyword);
+    public PageInfo<GameResourceVO> getPage(int pageNum, int pageSize,int type, String keyword) {
+        List<GameResource> page = mapper.getPage(pageNum, pageSize ,type,keyword);
         PageInfo<GameResource> pageInfo = convert(page);
         return BeanCopyUtils.copyList(pageInfo,GameResourceVO.class);
     }
@@ -45,6 +45,11 @@ public class GameResourceServiceImpl implements GameResourceService {
     @Override
     public Integer updateDownloadTimes(Integer id) {
         return mapper.updateDownloadTimes(id);
+    }
+
+    @Override
+    public GameResource selectById(Integer id) {
+        return mapper.selectByPrimaryKey(id);
     }
 
     private PageInfo<GameResource> convert(List<GameResource> list) {

@@ -20,7 +20,9 @@ public interface GameResourceMapper {
 
     int updateByPrimaryKey(GameResource record);
 
-    List<GameResource> getPage(@Param("pageNumKey") int pageNum, @Param("pageSizeKey") int pageSize,@Param("keyword")String keyword);
+    List<GameResource> getPage(@Param("pageNumKey") int pageNum, @Param("pageSizeKey") int pageSize,
+                               @Param("type")int type,
+                               @Param("keyword")String keyword);
 
     Integer updateDownloadTimes(Integer id);
 }

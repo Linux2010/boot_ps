@@ -25,22 +25,35 @@ import java.util.Map;
  * @创建时间: 2018/12/21
  */
 @Controller
-@RequestMapping("/ps4")
-public class PS4Controller {
+@RequestMapping("/game")
+public class GameResourceController {
 
     @Autowired
     private GameResourceService service;
 
-    @GetMapping("/")
+    @GetMapping("/ps4")
     public String ps4() {
         return "ps4";
     }
 
 
+
+    @GetMapping("/psv")
+    public String psv() {
+        return "psv";
+    }
+
+
+    @GetMapping("/ns")
+    public String ns() {
+        return "ns";
+    }
+
     @GetMapping("/list")
     @ResponseBody
     public PageInfo<GameResourceVO> list(@RequestParam("page") Integer pageNum,
                                          @RequestParam("rows") Integer pageSize,
+                                         Integer type,
                                          String keyword
                                          ) {
         if(pageSize>15){
@@ -53,14 +66,15 @@ public class PS4Controller {
                 e.printStackTrace();
             }
         }
-        PageInfo<GameResourceVO> page = service.getPage(pageNum, pageSize ,keyword);
+        PageInfo<GameResourceVO> page = service.getPage(pageNum, pageSize ,type,keyword);
         return page;
     }
 
-    @PostMapping("/updateDownloadTimes")
+    @PostMapping("/download")
     @ResponseBody
     public Integer updateDownloadTimes(Integer id){
       Integer result =  service.updateDownloadTimes(id);
+      service.selectById(id);
       return result;
     }
 

@@ -106,7 +106,7 @@
 
                 <ul class="nav nav-list" style="top: 0px;">
                     <li class="">
-                        <a href="${ctx}/ps4/">
+                        <a href="${ctx}/index/">
                             <i class="menu-icon fa fa-desktop"></i>
                             <span class="menu-text"> 首页 </span>
                         </a>
@@ -116,7 +116,7 @@
 
 
                     <li class="">
-                        <a href="${ctx}/ps4/">
+                        <a href="${ctx}/game/ps4">
                             <i class="menu-icon fa fa-list-alt"></i>
                             <span class="menu-text"> PS4游戏资源 </span>
                         </a>
@@ -125,7 +125,7 @@
                     </li>
 
                     <li class="">
-                        <a href="">
+                        <a href="${ctx}/game/ns">
                             <i class="menu-icon fa fa-list"></i>
 
                             <span class="menu-text">
@@ -137,7 +137,7 @@
                     </li>
 
                     <li class="">
-                        <a href="">
+                        <a href="${ctx}/game/psv">
                             <i class="menu-icon fa fa-picture-o"></i>
                             <span class="menu-text"> PSV游戏资源 </span>
                         </a>

@@ -1,9 +1,9 @@
 $(function($){
     var grid_selector = "#grid-table";
     var pager_selector = "#grid-pager";
-    var  gameTypeStr = " PS4游戏";
+    var  gameTypeStr = " psv游戏";
     $(grid_selector).jqGrid({
-        url: "/game/list?type=0",
+        url: "/game/list?type=2",
         subGrid: false,
         datatype: "json",
         height: 'auto',
@@ -27,7 +27,7 @@ $(function($){
             {
                 name: 'downloadLink', index: 'downloadLink', width: 30, fixed: false, sortable: false, resize: false,
                 formatter: function (cellvalue, options, rowObject) {
-                    return '<a type="button" target="_Blank"  onclick="download(\'' + rowObject.id +'\')" class="btn btn-white btn-sm btn-primary">下 载</a>';
+                    return '<a type="button" target="_Blank"  onclick="updateDownloadTimes(\'' + rowObject.id +'\',\'' + cellvalue + '\')" class="btn btn-white btn-sm btn-primary">下 载</a>';
 
                 }
             }
@@ -129,12 +129,12 @@ $(function($){
 
 });
 
-var download = function (id) {
+var updateDownloadTimes = function (id,downloadLink) {
     var newPage = window.open();
     $.ajax({
         async: false,
         type: "POST",
-        url: "/game/download",
+        url: "/game/updateDownloadTimes",
         data: {'id': id},
         dataType: "json",
         success: function (data) {

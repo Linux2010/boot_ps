@@ -35,7 +35,7 @@
     select
     <include refid="Base_Column_List" />
     from game_resource
-    where 'type'=0
+    where 'type'=#{type}
     <if test="keyword != null and keyword !=''">
       AND (
       game_name LIKE CONCAT('%',#{keyword},'%')

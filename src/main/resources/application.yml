@@ -6,9 +6,9 @@ spring:
     name: boot-ps
 
   datasource:
-      url: jdbc:mysql://localhost:3306/gameshare?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=true&allowMultiQueries=true
+      url: jdbc:mysql://localhost:3306/gameshare?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=false&allowMultiQueries=true
       username: root
-      password: root
+      password: root123!
 
 pagehelper:
   params: pageNum=pageNumKey;pageSize=pageSizeKey;

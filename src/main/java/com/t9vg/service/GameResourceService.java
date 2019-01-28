@@ -14,7 +14,9 @@ public interface GameResourceService {
 
     Integer insertBach(List<GameResource> list);
 
-    PageInfo<GameResourceVO> getPage(int pageNum,int pageSize,String keyword);
+    PageInfo<GameResourceVO> getPage(int pageNum,int pageSize,int type,String keyword);
 
     Integer updateDownloadTimes(Integer id);
+
+    GameResource selectById(Integer id);
 }
