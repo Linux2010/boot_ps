@@ -4,12 +4,8 @@ server:
 spring:
   application:
     name: boot-ps
-
-  datasource:
-      url: jdbc:mysql://localhost:3306/gameshare?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=false&allowMultiQueries=true
-      username: root
-      password: root123!
-
+  profiles:
+    active: dev
 pagehelper:
   params: pageNum=pageNumKey;pageSize=pageSizeKey;
 
@@ -17,3 +13,17 @@ mybatis:
   mapper-locations: classpath*:mapper/**/*.xml
   #type-aliases-package: classpath:cn.com.myproject.user.entity
   config-location: classpath:mybatis-config.xml
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/gameshare?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=false&allowMultiQueries=true
+    username: root
+    password: root
+---
+spring:
+  profiles: pord
+  datasource:
+    url: jdbc:mysql://47.110.255.209:3306/gameshare?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=false&allowMultiQueries=true
+    username: root
+    password: Tian123;
