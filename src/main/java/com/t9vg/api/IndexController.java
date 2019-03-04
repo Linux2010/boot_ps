@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2018/12/22
  */
 @Controller
-@RequestMapping("/index")
 public class IndexController {
-    @GetMapping("/")
+    @GetMapping(value = {"/index/",""})
     public String index() {
-        return "index";
+        return "ps4";
     }
 
 }

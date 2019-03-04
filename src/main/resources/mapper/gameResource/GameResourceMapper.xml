@@ -18,7 +18,7 @@
     <result column="delete_time" property="deleteTime" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, game_name, version, language, download_link, download_page_pass, unbox_pass, 
+    id, game_name, version, language, download_link, download_page_pass, unbox_pass,
     create_datetime, download_times, remark, type, extra_info, delete_flag, delete_time
   </sql>
   <update id="updateDownloadTimes" parameterType="java.lang.Integer">
@@ -33,7 +33,8 @@
 
   <select id="getPage" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
+    id, game_name, version, language,download_page_pass, unbox_pass,
+    create_datetime, download_times, remark, type, extra_info, delete_flag, delete_time
     from game_resource
     where 'type'=#{type}
     <if test="keyword != null and keyword !=''">

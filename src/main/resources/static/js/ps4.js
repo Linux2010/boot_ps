@@ -1,13 +1,13 @@
-$(function($){
+$(function ($) {
     var grid_selector = "#grid-table";
     var pager_selector = "#grid-pager";
-    var  gameTypeStr = " PS4游戏";
+    var gameTypeStr = " PS4游戏";
     $(grid_selector).jqGrid({
         url: "/game/list?type=0",
         subGrid: false,
         datatype: "json",
         height: 'auto',
-        colNames: ['序列号', '游戏名称', '支持版本', '语言支持',  '下载页密码', '解压密码','下载次数', '备注', '介绍','操作'],
+        colNames: ['序列号', '游戏名称', '支持版本', '语言支持', '下载页密码', '解压密码', '下载次数', '备注', '介绍', '操作'],
         colModel: [
             {name: 'id', index: 'id', width: 30, editable: true, key: true},
             {name: 'gameName', index: 'gameName', width: 100},
@@ -20,14 +20,14 @@ $(function($){
             {
                 name: 'gameName', index: 'gameName', width: 90, fixed: true, sortable: false, resize: false,
                 formatter: function (cellvalue, options, rowObject) {
-                    return '<a type="button" target="_Blank" href="https://www.baidu.com/s?ie=utf-8&wd='+cellvalue+gameTypeStr+'"  class="btn btn-white btn-sm btn-primary">百度简介</a>';
+                    return '<a type="button" target="_Blank" href="https://www.baidu.com/s?ie=utf-8&wd=' + cellvalue + gameTypeStr + '"  class="btn btn-white btn-sm btn-primary">百度简介</a>';
 
                 }
             },
             {
                 name: 'downloadLink', index: 'downloadLink', width: 30, fixed: false, sortable: false, resize: false,
                 formatter: function (cellvalue, options, rowObject) {
-                    return '<a type="button" target="_Blank"  onclick="download(\'' + rowObject.id +'\')" class="btn btn-white btn-sm btn-primary">下 载</a>';
+                    return '<a type="button" target="_Blank"  onclick="download1(\'' + rowObject.id + '\')" class="btn btn-white btn-sm btn-primary">下 载</a>';
 
                 }
             }
@@ -45,7 +45,7 @@ $(function($){
         pager: pager_selector,
         altRows: true,
         multiselect: false,
-        autowidth:true,
+        autowidth: true,
         //multikey: "ctrlKey",
         //toppager: true,
         multiboxonly: true,
@@ -72,7 +72,7 @@ $(function($){
             addicon: 'ace-icon fa fa-plus-circle purple',
             del: false,
             deltext: '回收站',
-            deltitle:'删除至回收站',
+            deltitle: '删除至回收站',
             search: false,
             refresh: true,
             refreshtitle: '刷新',
@@ -120,7 +120,7 @@ $(function($){
     //模糊查询
     $("#search").bind("click", function () {
         var keyword = $("#keyword").val();
-        $("#grid-table").jqGrid("setGridParam",{page:1});
+        $("#grid-table").jqGrid("setGridParam", {page: 1});
         $("#grid-table").jqGrid('setGridParam', {
             postData: {"keyword": encodeURI(keyword)}
         }).trigger('reloadGrid');
@@ -129,21 +129,20 @@ $(function($){
 
 });
 
-var download = function (id) {
+var download1 = function (id) {
     var newPage = window.open();
     $.ajax({
         async: false,
         type: "POST",
         url: "/game/download",
         data: {'id': id},
-        dataType: "json",
-        success: function (data) {
-            if (data == 1) {
-                $("#grid-table").trigger("reloadGrid");
-                newPage.location.href = downloadLink;
-            }
+        dataType: "text",
+        success: function (response) {
+            $("#grid-table").trigger("reloadGrid");
+            newPage.location.href = response;
         },
-        error: function (data) {
+        error: function (response) {
+            alert("系统异常，请稍后重试");
         }
     });
 };

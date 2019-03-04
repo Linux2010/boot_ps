@@ -72,10 +72,10 @@ public class GameResourceController {
 
     @PostMapping("/download")
     @ResponseBody
-    public Integer updateDownloadTimes(Integer id){
-      Integer result =  service.updateDownloadTimes(id);
-      service.selectById(id);
-      return result;
+    public String updateDownloadTimes(Integer id){
+      service.updateDownloadTimes(id);
+      GameResource gameResource = service.selectById(id);
+      return gameResource.getDownloadLink();
     }
 
 
@@ -90,20 +90,5 @@ public class GameResourceController {
         System.out.println("输入：" + i);
         Integer result = service.insertBach(list);
         System.out.println("收录：" + result);
-    }
-
-
-
-    @GetMapping("/test")
-    @ResponseBody
-    public List<GameResource> test() {
-        List<GameResource> list = new ArrayList<GameResource>();
-        GameResource g1 = new GameResource();
-        g1.setId(1);
-        GameResource g2 = new GameResource();
-        g2.setId(2);
-        list.add(g1);
-        list.add(g2);
-        return list;
     }
 }
