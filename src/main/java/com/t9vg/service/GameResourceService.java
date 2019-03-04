@@ -16,7 +16,7 @@ public interface GameResourceService {
 
     PageInfo<GameResourceVO> getPage(int pageNum,int pageSize,int type,String keyword);
 
-    Integer updateDownloadTimes(Integer id);
+    Integer updateDownloadTimes(String id);
 
-    GameResource selectById(Integer id);
+    GameResource selectById(String id);
 }

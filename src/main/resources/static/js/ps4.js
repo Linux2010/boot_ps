@@ -9,7 +9,7 @@ $(function ($) {
         height: 'auto',
         colNames: ['序列号', '游戏名称', '支持版本', '语言支持', '下载页密码', '解压密码', '下载次数', '备注', '介绍', '操作'],
         colModel: [
-            {name: 'id', index: 'id', width: 30, editable: true, key: true},
+            {name: 'id', index: 'id', width: 30, hidden:true, editable: true, key: true},
             {name: 'gameName', index: 'gameName', width: 100},
             {name: 'version', index: 'version', width: 50},
             {name: 'language', index: 'language', width: 50},

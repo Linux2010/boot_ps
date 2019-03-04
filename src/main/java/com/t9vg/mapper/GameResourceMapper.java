@@ -8,13 +8,13 @@ import java.util.List;
 
 @Mapper
 public interface GameResourceMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(GameResource record);
 
     int insertSelective(GameResource record);
 
-    GameResource selectByPrimaryKey(Integer id);
+    GameResource selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(GameResource record);
 
@@ -24,5 +24,5 @@ public interface GameResourceMapper {
                                @Param("type")int type,
                                @Param("keyword")String keyword);
 
-    Integer updateDownloadTimes(Integer id);
+    Integer updateDownloadTimes(String id);
 }

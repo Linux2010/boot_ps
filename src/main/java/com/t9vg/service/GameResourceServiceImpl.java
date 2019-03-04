@@ -43,12 +43,12 @@ public class GameResourceServiceImpl implements GameResourceService {
     }
 
     @Override
-    public Integer updateDownloadTimes(Integer id) {
+    public Integer updateDownloadTimes(String id) {
         return mapper.updateDownloadTimes(id);
     }
 
     @Override
-    public GameResource selectById(Integer id) {
+    public GameResource selectById(String id) {
         return mapper.selectByPrimaryKey(id);
     }
 

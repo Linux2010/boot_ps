@@ -1,7 +1,8 @@
 package com.t9vg.po;
 
 public class GameResource {
-    private Integer id;
+
+    private String id;
 
     private String gameName;
 
@@ -29,11 +30,12 @@ public class GameResource {
 
     private String deleteTime;
 
-    public Integer getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

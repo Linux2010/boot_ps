@@ -1,203 +1,203 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.t9vg.mapper.GameResourceMapper" >
-  <resultMap id="BaseResultMap" type="com.t9vg.po.GameResource" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="game_name" property="gameName" jdbcType="VARCHAR" />
-    <result column="version" property="version" jdbcType="VARCHAR" />
-    <result column="language" property="language" jdbcType="VARCHAR" />
-    <result column="download_link" property="downloadLink" jdbcType="VARCHAR" />
-    <result column="download_page_pass" property="downloadPagePass" jdbcType="VARCHAR" />
-    <result column="unbox_pass" property="unboxPass" jdbcType="VARCHAR" />
-    <result column="create_datetime" property="createDatetime" jdbcType="VARCHAR" />
-    <result column="download_times" property="downloadTimes" jdbcType="INTEGER" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="INTEGER" />
-    <result column="extra_info" property="extraInfo" jdbcType="VARCHAR" />
-    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
-    <result column="delete_time" property="deleteTime" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+    <resultMap id="BaseResultMap" type="com.t9vg.po.GameResource" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="game_name" property="gameName" jdbcType="VARCHAR" />
+        <result column="version" property="version" jdbcType="VARCHAR" />
+        <result column="language" property="language" jdbcType="VARCHAR" />
+        <result column="download_link" property="downloadLink" jdbcType="VARCHAR" />
+        <result column="download_page_pass" property="downloadPagePass" jdbcType="VARCHAR" />
+        <result column="unbox_pass" property="unboxPass" jdbcType="VARCHAR" />
+        <result column="create_datetime" property="createDatetime" jdbcType="VARCHAR" />
+        <result column="download_times" property="downloadTimes" jdbcType="INTEGER" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="extra_info" property="extraInfo" jdbcType="VARCHAR" />
+        <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+        <result column="delete_time" property="deleteTime" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
     id, game_name, version, language, download_link, download_page_pass, unbox_pass,
     create_datetime, download_times, remark, type, extra_info, delete_flag, delete_time
   </sql>
-  <update id="updateDownloadTimes" parameterType="java.lang.Integer">
+    <update id="updateDownloadTimes" parameterType="java.lang.String">
     UPDATE game_resource set download_times = download_times+1 WHERE id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from game_resource
-    where id = #{id,jdbcType=INTEGER}
-  </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from game_resource
+        where id = #{id,jdbcType=INTEGER}
+    </select>
 
-  <select id="getPage" resultMap="BaseResultMap">
-    select
-    id, game_name, version, language,download_page_pass, unbox_pass,
-    create_datetime, download_times, remark, type, extra_info, delete_flag, delete_time
-    from game_resource
-    where 'type'=#{type}
-    <if test="keyword != null and keyword !=''">
-      AND (
-      game_name LIKE CONCAT('%',#{keyword},'%')
-      )
-    </if>
-    ORDER BY download_times desc
-  </select>
+    <select id="getPage" resultMap="BaseResultMap">
+        select
+        id, game_name, version, language, download_page_pass, unbox_pass,
+        create_datetime, download_times, remark, type, extra_info, delete_flag, delete_time
+        from game_resource
+        where 'type'=#{type}
+        <if test="keyword != null and keyword !=''">
+            AND (
+            game_name LIKE CONCAT('%',#{keyword},'%')
+            )
+        </if>
+        ORDER BY download_times desc
+    </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from game_resource
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </delete>
-  <insert id="insert" parameterType="com.t9vg.po.GameResource" >
-    insert into game_resource (id, game_name, version, 
-      language, download_link, download_page_pass, 
-      unbox_pass, create_datetime, download_times, 
-      remark, type, extra_info, 
+    <insert id="insert" parameterType="com.t9vg.po.GameResource" >
+    insert into game_resource (id, game_name, version,
+      language, download_link, download_page_pass,
+      unbox_pass, create_datetime, download_times,
+      remark, type, extra_info,
       delete_flag, delete_time)
-    values (#{id,jdbcType=INTEGER}, #{gameName,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
-      #{language,jdbcType=VARCHAR}, #{downloadLink,jdbcType=VARCHAR}, #{downloadPagePass,jdbcType=VARCHAR}, 
-      #{unboxPass,jdbcType=VARCHAR}, #{createDatetime,jdbcType=VARCHAR}, #{downloadTimes,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{extraInfo,jdbcType=VARCHAR}, 
+    values (#{id}, #{gameName,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR},
+      #{language,jdbcType=VARCHAR}, #{downloadLink,jdbcType=VARCHAR}, #{downloadPagePass,jdbcType=VARCHAR},
+      #{unboxPass,jdbcType=VARCHAR}, #{createDatetime,jdbcType=VARCHAR}, #{downloadTimes,jdbcType=INTEGER},
+      #{remark,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{extraInfo,jdbcType=VARCHAR},
       #{deleteFlag,jdbcType=INTEGER}, #{deleteTime,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.t9vg.po.GameResource" >
-    insert into game_resource
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="gameName != null" >
-        game_name,
-      </if>
-      <if test="version != null" >
-        version,
-      </if>
-      <if test="language != null" >
-        language,
-      </if>
-      <if test="downloadLink != null" >
-        download_link,
-      </if>
-      <if test="downloadPagePass != null" >
-        download_page_pass,
-      </if>
-      <if test="unboxPass != null" >
-        unbox_pass,
-      </if>
-      <if test="createDatetime != null" >
-        create_datetime,
-      </if>
-      <if test="downloadTimes != null" >
-        download_times,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="type != null" >
-        type,
-      </if>
-      <if test="extraInfo != null" >
-        extra_info,
-      </if>
-      <if test="deleteFlag != null" >
-        delete_flag,
-      </if>
-      <if test="deleteTime != null" >
-        delete_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="gameName != null" >
-        #{gameName,jdbcType=VARCHAR},
-      </if>
-      <if test="version != null" >
-        #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="language != null" >
-        #{language,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadLink != null" >
-        #{downloadLink,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadPagePass != null" >
-        #{downloadPagePass,jdbcType=VARCHAR},
-      </if>
-      <if test="unboxPass != null" >
-        #{unboxPass,jdbcType=VARCHAR},
-      </if>
-      <if test="createDatetime != null" >
-        #{createDatetime,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadTimes != null" >
-        #{downloadTimes,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null" >
-        #{type,jdbcType=INTEGER},
-      </if>
-      <if test="extraInfo != null" >
-        #{extraInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="deleteFlag != null" >
-        #{deleteFlag,jdbcType=INTEGER},
-      </if>
-      <if test="deleteTime != null" >
-        #{deleteTime,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.t9vg.po.GameResource" >
-    update game_resource
-    <set >
-      <if test="gameName != null" >
-        game_name = #{gameName,jdbcType=VARCHAR},
-      </if>
-      <if test="version != null" >
-        version = #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="language != null" >
-        language = #{language,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadLink != null" >
-        download_link = #{downloadLink,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadPagePass != null" >
-        download_page_pass = #{downloadPagePass,jdbcType=VARCHAR},
-      </if>
-      <if test="unboxPass != null" >
-        unbox_pass = #{unboxPass,jdbcType=VARCHAR},
-      </if>
-      <if test="createDatetime != null" >
-        create_datetime = #{createDatetime,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadTimes != null" >
-        download_times = #{downloadTimes,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null" >
-        type = #{type,jdbcType=INTEGER},
-      </if>
-      <if test="extraInfo != null" >
-        extra_info = #{extraInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="deleteFlag != null" >
-        delete_flag = #{deleteFlag,jdbcType=INTEGER},
-      </if>
-      <if test="deleteTime != null" >
-        delete_time = #{deleteTime,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.t9vg.po.GameResource" >
+    <insert id="insertSelective" parameterType="com.t9vg.po.GameResource" >
+        insert into game_resource
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="gameName != null" >
+                game_name,
+            </if>
+            <if test="version != null" >
+                version,
+            </if>
+            <if test="language != null" >
+                language,
+            </if>
+            <if test="downloadLink != null" >
+                download_link,
+            </if>
+            <if test="downloadPagePass != null" >
+                download_page_pass,
+            </if>
+            <if test="unboxPass != null" >
+                unbox_pass,
+            </if>
+            <if test="createDatetime != null" >
+                create_datetime,
+            </if>
+            <if test="downloadTimes != null" >
+                download_times,
+            </if>
+            <if test="remark != null" >
+                remark,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="extraInfo != null" >
+                extra_info,
+            </if>
+            <if test="deleteFlag != null" >
+                delete_flag,
+            </if>
+            <if test="deleteTime != null" >
+                delete_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id},
+            </if>
+            <if test="gameName != null" >
+                #{gameName,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null" >
+                #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="language != null" >
+                #{language,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadLink != null" >
+                #{downloadLink,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadPagePass != null" >
+                #{downloadPagePass,jdbcType=VARCHAR},
+            </if>
+            <if test="unboxPass != null" >
+                #{unboxPass,jdbcType=VARCHAR},
+            </if>
+            <if test="createDatetime != null" >
+                #{createDatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadTimes != null" >
+                #{downloadTimes,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null" >
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null" >
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="extraInfo != null" >
+                #{extraInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteFlag != null" >
+                #{deleteFlag,jdbcType=INTEGER},
+            </if>
+            <if test="deleteTime != null" >
+                #{deleteTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.t9vg.po.GameResource" >
+        update game_resource
+        <set >
+            <if test="gameName != null" >
+                game_name = #{gameName,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null" >
+                version = #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="language != null" >
+                language = #{language,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadLink != null" >
+                download_link = #{downloadLink,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadPagePass != null" >
+                download_page_pass = #{downloadPagePass,jdbcType=VARCHAR},
+            </if>
+            <if test="unboxPass != null" >
+                unbox_pass = #{unboxPass,jdbcType=VARCHAR},
+            </if>
+            <if test="createDatetime != null" >
+                create_datetime = #{createDatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadTimes != null" >
+                download_times = #{downloadTimes,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null" >
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null" >
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="extraInfo != null" >
+                extra_info = #{extraInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteFlag != null" >
+                delete_flag = #{deleteFlag,jdbcType=INTEGER},
+            </if>
+            <if test="deleteTime != null" >
+                delete_time = #{deleteTime,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.t9vg.po.GameResource" >
     update game_resource
     set game_name = #{gameName,jdbcType=VARCHAR},
       version = #{version,jdbcType=VARCHAR},
@@ -212,6 +212,6 @@
       extra_info = #{extraInfo,jdbcType=VARCHAR},
       delete_flag = #{deleteFlag,jdbcType=INTEGER},
       delete_time = #{deleteTime,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </update>
 </mapper>

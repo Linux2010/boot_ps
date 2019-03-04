@@ -72,7 +72,7 @@ public class GameResourceController {
 
     @PostMapping("/download")
     @ResponseBody
-    public String updateDownloadTimes(Integer id){
+    public String updateDownloadTimes(String id){
       service.updateDownloadTimes(id);
       GameResource gameResource = service.selectById(id);
       return gameResource.getDownloadLink();
