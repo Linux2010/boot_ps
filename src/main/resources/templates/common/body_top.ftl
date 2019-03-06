@@ -17,50 +17,10 @@
 						<span id = "department"><small>
 							<i class="ace-icon fa fa-signal"></i>
 						</small>
-							T9VG 资源分享网站
+							T9VG 主机游戏
 						</span>
 
 					</a>
-				</div>
-				<div class="navbar-buttons navbar-header pull-right" role="navigation">
-					<ul class="nav ace-nav">
-
-
-						<li class="light-blue dropdown-modal">
-							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <i class="ace-icon fa fa-caret-down"></i>
-									<small>赞助及打赏&</small>
-								</span>
-
-
-							</a>
-
-							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<#--<li>-->
-									<#--<a href="#">-->
-										<#--<i class="ace-icon fa fa-cog"></i>-->
-										<#--设置-->
-									<#--</a>-->
-								<#--</li>-->
-
-								<#--<li>-->
-									<#--<a href="profile.html">-->
-										<#--<i class="ace-icon fa fa-user"></i>-->
-										<#--个人中心-->
-									<#--</a>-->
-								<#--</li>-->
-
-								<#--<li class="divider"></li>-->
-
-								<li>
-									<a href="/logout">
-										<i class="ace-icon fa fa-power-off"></i>
-										开发Home
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
 				</div>
 			</div><!-- /.navbar-container -->
 		</div>
@@ -76,21 +36,20 @@
 
                 <div class="sidebar-shortcuts" id="sidebar-shortcuts">
                     <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                        <button class="btn btn-success">
-                            <i class="fa fa-leaf"></i>
+                        <button class="btn btn-success" style="width: auto" id="ds" onclick="ds()">
+                            <i class="fa fa-leaf"> 赞助&打赏</i>
                         </button>
-
-                        <button class="btn btn-info">
+                       <#-- <button class="btn btn-info">
                             <i class="ace-icon fa fa-pencil"></i>
                         </button>
 
                         <button class="btn btn-warning">
                             <i class="ace-icon fa fa-users"></i>
-                        </button>
+                        </button>-->
 
-                        <button class="btn btn-danger">
-                            <i class="ace-icon fa fa-cogs"></i>
-                        </button>
+                        <#--<button class="btn btn-danger">
+                            <i class="ace-icon fa fa-cogs"> 游戏&主机回收</i>
+                        </button>-->
                     </div>
 
                     <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
@@ -108,7 +67,7 @@
                     <li class="">
                         <a href="${ctx}/index/">
                             <i class="menu-icon fa fa-desktop"></i>
-                            <span class="menu-text"> 首页 </span>
+                            <span class="menu-text"> 首页&公告 </span>
                         </a>
 
                         <b class="arrow"></b>

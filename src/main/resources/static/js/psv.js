@@ -3,7 +3,7 @@ $(function($){
     var pager_selector = "#grid-pager";
     var  gameTypeStr = " psv游戏";
     $(grid_selector).jqGrid({
-        url: "/game/list?type=2",
+        url: "/game/list?type=5",
         subGrid: false,
         datatype: "json",
         height: 'auto',

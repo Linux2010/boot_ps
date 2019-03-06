@@ -3,7 +3,7 @@ $(function($){
     var pager_selector = "#grid-pager";
     var  gameTypeStr = " ns游戏";
     $(grid_selector).jqGrid({
-        url: "/game/list?type=1",
+        url: "/game/list?type=3",
         subGrid: false,
         datatype: "json",
         height: 'auto',

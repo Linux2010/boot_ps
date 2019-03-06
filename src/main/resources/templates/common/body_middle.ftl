@@ -2,7 +2,20 @@
 </div><!-- /.page-content -->
 </div>
 </div><!-- /.main-content -->
-
+<div class="modal modal-danger fade" id="ds-modal" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">微信赞赏</h4>
+            </div>
+            <div class="modal-body">
+                <img id="ds-img" style="width: 550px; height: 550px" src="https://img.alicdn.com/imgextra/i4/295305335/O1CN017TYNrR1pHTVumoZS2_!!295305335.jpg">
+            </div>
+        </div>
+    </div>
+</div>
 <div class="footer">
     <div class="footer-inner">
         <div class="footer-content">
@@ -60,3 +73,11 @@
 <script src="${ctx}/assets/js/ace.min.js"></script>
 
 <script src="${ctx}/assets/js/bootstrap.modal.js"></script>
+
+<script type="text/javascript">
+    function ds() {
+        $("#ds-img").attr("src","https://img.alicdn.com/imgextra/i4/295305335/O1CN017TYNrR1pHTVumoZS2_!!295305335.jpg");
+        $("#ds-modal").modal("show");
+    }
+
+</script>

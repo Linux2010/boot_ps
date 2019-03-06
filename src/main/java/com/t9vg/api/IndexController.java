@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
     @GetMapping(value = {"/index/",""})
     public String index() {
-        return "ps4";
+        return "index";
     }
 
 }
