@@ -27,3 +27,10 @@ spring:
     url: jdbc:mysql://47.110.255.209:3306/gameshare?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=false&allowMultiQueries=true
     username: root
     password: Tian123;
+---
+spring:
+  profiles: aliyun
+  datasource:
+    url: jdbc:mysql://172.17.32.63:3306/gameshare?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=true&useSSL=false&allowMultiQueries=true
+    username: root
+    password: Tian123;
