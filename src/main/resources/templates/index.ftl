@@ -48,7 +48,7 @@
                 <script src="${ctx}/assets/js/jquery-ui.min.js"></script>
                 <script src="${ctx}/assets/js/jquery.ui.touch-punch.min.js"></script>
                 <script src="${ctx}/assets/js/jquery.form.js"></script>
-                <script src="${ctx}/js/ns.js?v=0.0.1"></script>
+                <script src="${ctx}/js/index.js?v=0.0.1"></script>
 
 <#include "common/body_bottom.ftl"/>
 

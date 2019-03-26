@@ -36,7 +36,7 @@
         id, game_name, version, language, download_page_pass, unbox_pass,
         create_datetime, download_times, remark, type, extra_info, delete_flag, delete_time
         from game_resource
-        where 'type'=#{type}
+        where type =#{type}
         <if test="keyword != null and keyword !=''">
             AND (
             game_name LIKE CONCAT('%',#{keyword},'%')
