@@ -13,6 +13,9 @@ mybatis:
   mapper-locations: classpath*:mapper/**/*.xml
   #type-aliases-package: classpath:cn.com.myproject.user.entity
   config-location: classpath:mybatis-config.xml
+logging:
+  level: debug
+  file: log/pslog.log
 ---
 spring:
   profiles: dev

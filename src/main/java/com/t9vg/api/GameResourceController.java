@@ -4,11 +4,15 @@ import com.github.pagehelper.PageInfo;
 import com.t9vg.po.GameResource;
 import com.t9vg.service.GameResourceService;
 import com.t9vg.vo.GameResourceVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -27,6 +31,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/game")
 public class GameResourceController {
+    private static final Logger log = LoggerFactory.getLogger(GameResourceController.class);
 
     @Autowired
     private GameResourceService service;
@@ -35,7 +40,6 @@ public class GameResourceController {
     public String ps4() {
         return "ps4";
     }
-
 
 
     @GetMapping("/psv")
@@ -54,28 +58,32 @@ public class GameResourceController {
     public PageInfo<GameResourceVO> list(@RequestParam("page") Integer pageNum,
                                          @RequestParam("rows") Integer pageSize,
                                          Integer type,
-                                         String keyword
-                                         ) {
-        if(pageSize>15){
+                                         String keyword,
+                                         HttpServletRequest request
+    ) {
+        if (pageSize > 15) {
             return null;
         }
-        if(!StringUtils.isEmpty(keyword)){
+
+        log.info("list,keyword:[{}],remoteHost[{}]",keyword, request.getRemoteAddr());
+        if (!StringUtils.isEmpty(keyword)) {
             try {
-                keyword=URLDecoder.decode(keyword, "UTF-8");
+                keyword = URLDecoder.decode(keyword, "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
-        PageInfo<GameResourceVO> page = service.getPage(pageNum, pageSize ,type,keyword);
+        PageInfo<GameResourceVO> page = service.getPage(pageNum, pageSize, type, keyword);
         return page;
     }
 
     @PostMapping("/download")
     @ResponseBody
-    public String updateDownloadTimes(String id){
-      service.updateDownloadTimes(id);
-      GameResource gameResource = service.selectById(id);
-      return gameResource.getDownloadLink();
+    public String updateDownloadTimes(String id, HttpServletRequest request) {
+        log.info("download id:[{}]----remoteHost[{}]", id,request.getRemoteAddr());
+        service.updateDownloadTimes(id);
+        GameResource gameResource = service.selectById(id);
+        return gameResource.getDownloadLink();
     }
 
 
@@ -83,7 +91,7 @@ public class GameResourceController {
     public void insertBatch(@RequestBody List<GameResource> list) {
         int i = 0;
         for (GameResource g : list
-                ) {
+        ) {
             System.out.println(g.toString());
             i++;
         }
