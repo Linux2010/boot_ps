@@ -35,7 +35,27 @@
 
             <div class="row">
 
-<div>欢迎！~~</div>
+
+                <div class="col-xs-12 col-sm-12">
+
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-8 col-xs-8">
+                                <input type="text" id="keyword" placeholder="标题" class="col-xs-3 ">
+                                &nbsp;&nbsp;<button type="button" class="btn btn-info btn-sm"
+                                                    id="search">查询
+                            </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table id="grid-table"></table>
+                    <div id="grid-pager"></div>
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+
+                <div id="dialog">
+                </div>
 <#include "common/body_middle.ftl"/>
 <#include "common/bootstrap_modal.ftl">
 
@@ -51,4 +71,5 @@
                 <script src="${ctx}/js/index.js?v=0.0.1"></script>
 
 <#include "common/body_bottom.ftl"/>
+
 
